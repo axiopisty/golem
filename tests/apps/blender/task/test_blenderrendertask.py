@@ -153,7 +153,6 @@ class TestBlenderTask(TempDirFixture):
         warnings = self.bt.after_test(results, None)
         
         self.assertEqual(warnings, None)
-        
 
         with open(outlog, 'w') as fd_out:
             fd_out.write("Warning: path 'example/directory/to/file/f1.png' "
@@ -252,6 +251,7 @@ class TestBlenderTask(TempDirFixture):
             self.assertTrue(path.isfile(self.bt.output_file))
             img = Image.open(self.bt.output_file)
             img_x, img_y = img.size
+            img.close()
             self.assertTrue(self.bt.res_x == img_x and res_y == img_y)
 
         self.bt.restart()
